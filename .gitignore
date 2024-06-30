@@ -1,2 +1,4 @@
 .idea/*
 .env
+src/data/
+src/models
