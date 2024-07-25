@@ -1,4 +1,5 @@
 .idea/*
 .env
-src/data/
+src/data/*
 src/models
+*.xlsx
