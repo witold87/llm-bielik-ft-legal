@@ -1,2 +1,15 @@
 pandas==2.2.2
 pymupdf==1.24.6
+openai==1.35.5
+python-dotenv==1.0.1
+transformers==4.42.3
+torch==2.3.1
+langchain==0.2.6
+openpyxl==3.1.5
+numpy==1.26.4
+gensim==4.3.2
+nltk==3.8.1
+scipy==1.14.0
+POT==0.9.4
+matplotlib==3.9.1
+seaborn==0.13.2
