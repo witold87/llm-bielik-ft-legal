@@ -3,3 +3,5 @@
 src/data/*
 src/models
 *.xlsx
+
+__pycache__/

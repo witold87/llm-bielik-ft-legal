@@ -1,42 +1,16 @@
+from src.external_requests.openai_req import OpenAIReq
+from src.external_requests.prompting import PromptBuilder
 
 
+class LLMBasedEvaluator:
 
-def get_covarage_by_gpt(question, context):
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        max_tokens=200,
-        temperature=0.0,
-        top_p=1,
-        messages=[
-            {
-                'role': 'system',
-                'content': 'You are an expert lawyer who want to get insights about law',
-            },
-            {
-                'role': 'user',
-                'content': f'Your task is to rate from 1 to 5 if the question can be extracted from the context. Here is the context {context}, question: {question}. Return only value of the rating.'
-            }
-        ]
-    )
-    response = completion.choices[0].message.content
-    return response
+    def __init__(self, openai_req: OpenAIReq):
+        self.openai_req = openai_req
 
-def get_coherence(question):
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        max_tokens=200,
-        temperature=0.0,
-        top_p=1,
-        messages=[
-            {
-                'role': 'system',
-                'content': 'You are an expert lawyer who want to get insights about law',
-            },
-            {
-                'role': 'user',
-                'content': f'Your task is to rate from 1 to 5 the coherence (fluency) of the question and provide explanation. Here is the question: {question}. Return only value of the rating and explanation in tuple format: rating | explanation'
-            }
-        ]
-    )
-    response = completion.choices[0].message.content
-    return response
+    def evaluate_coverage(self, question: str, context: str) -> str:
+        prompt = PromptBuilder.get_coverage(question=question, context=context)
+        return self.openai_req.call_api(prompt=prompt)
+
+    def evaluate_coherence(self, question: str) -> str:
+        prompt = PromptBuilder.get_coherence(question=question)
+        return self.openai_req.call_api(prompt=prompt)
