@@ -14,7 +14,7 @@ class OpenAIReq:
     Base support class for making a calls to OpenAI API.
     """
 
-    def __init__(self, model: str) -> None:
+    def __init__(self, model: str = None) -> None:
         self.model: Union[str, None] = 'gpt-3.5-turbo' if model is None else model
 
     def call_api(self, prompt: list, **model_params) -> str:
