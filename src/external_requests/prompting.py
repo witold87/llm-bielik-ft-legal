@@ -50,3 +50,30 @@ class PromptBuilder:
                 'content': f'Your task is to rate from 1 to 5 if the question can be extracted from the context. Here is the context {context}, question: {question}. Return only value of the rating.'
             }
         ]
+
+    @staticmethod
+    def get_relevance(question: str, context: str) -> list:
+        return [
+            {
+                'role': 'system',
+                'content': 'You are an expert lawyer who want to get insights about law',
+            },
+            {
+                'role': 'user',
+                'content': f'Your task is to rate from 1 to 5 if the provided question could be asked by a lawyer then rate 5, and rate 1 if not based on the question and context. '
+                           f'Here is the question: {question} and context {context}. Return only value of the rating.'
+            }
+        ]
+
+    @staticmethod
+    def get_global_relevance(question: str) -> list:
+        return [
+            {
+                'role': 'system',
+                'content': 'You are an expert lawyer who want to get insights about law',
+            },
+            {
+                'role': 'user',
+                'content': f'Your task is to rate from 1 to 5 if the provided question could be asked by a lawyer then rate 5, and rate 1 if not based on the question. Here is the question: {question}. Return only value of the rating.'
+            }
+        ]
