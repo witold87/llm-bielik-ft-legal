@@ -13,3 +13,5 @@ scipy==1.14.0
 POT==0.9.4
 matplotlib==3.9.1
 seaborn==0.13.2
+tqdm==4.66.4
+tiktoken==0.7.0

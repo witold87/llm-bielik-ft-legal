@@ -20,7 +20,7 @@ class OpenAIReq:
     def call_api(self, prompt: list, **model_params) -> str:
         completion = client.chat.completions.create(
             model=self.model,
-            max_tokens=model_params.get('max_tokens', 200),
+            max_tokens=model_params.get('max_tokens', 4096),
             temperature=model_params.get('temperature', 0.2),
             top_p=model_params.get('top_p', 1),
             messages=prompt
