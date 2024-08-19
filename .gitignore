@@ -3,5 +3,6 @@
 src/data/*
 src/models
 *.xlsx
-
+src/wandb/*
+src/bielik-legal-finetune/*
 __pycache__/

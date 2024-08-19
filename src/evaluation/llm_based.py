@@ -14,3 +14,11 @@ class LLMBasedEvaluator:
     def evaluate_coherence(self, question: str) -> str:
         prompt = PromptBuilder.get_coherence(question=question)
         return self.openai_req.call_api(prompt=prompt)
+
+    def evaluate_relevance(self, question: str, context: str) -> str:
+        prompt = PromptBuilder.get_relevance(question=question, context=context)
+        return self.openai_req.call_api(prompt=prompt)
+
+    def evaluate_global_relevance(self, question: str) -> str:
+        prompt = PromptBuilder.get_global_relevance(question=question)
+        return self.openai_req.call_api(prompt=prompt)
