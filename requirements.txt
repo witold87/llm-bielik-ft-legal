@@ -17,3 +17,7 @@ tqdm==4.66.4
 tiktoken==0.7.0
 sentencepiece==0.2.0
 streamlit==1.38.0
+streamlit-pdf-viewer==0.0.18rc2
+langchain-community==0.2.16
+PyPDF2==3.0.1
+faiss-cpu==1.8.0
