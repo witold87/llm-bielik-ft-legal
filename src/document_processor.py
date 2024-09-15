@@ -1,6 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from io import BytesIO
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 
 
 class DocumentProcessor:
@@ -10,12 +10,12 @@ class DocumentProcessor:
         self.text = ''
 
     def extract_and_split(self):
-        self.extract_text()
+        self._extract_text()
         return self.split_into_chunks()
 
-    def extract_text(self) -> str:
+    def _extract_text(self) -> str:
         pdf_stream = BytesIO(self.file)
-        pdf_reader = PdfFileReader(pdf_stream)
+        pdf_reader = PdfReader(pdf_stream)
         extracted_text = str()
         for page in pdf_reader.pages:
             extracted_text += page.extract_text()
