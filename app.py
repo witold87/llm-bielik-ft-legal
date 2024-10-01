@@ -38,7 +38,7 @@ if session.pdf_ref is not None:
     binary_data = uploaded_file.getvalue()
     pdf_viewer(input=binary_data, width=700)
 
-    extracted_text = DocumentProcessor(chunk_size=200, file=binary_data).extract_and_split()
+    extracted_text = DocumentProcessor(chunk_size=512, file=binary_data).extract_and_split()
     doc_store = FaissDocStore(text=extracted_text)
 
     for message in st.session_state.messages:
@@ -52,7 +52,7 @@ if session.pdf_ref is not None:
         st.session_state.messages.append({"role": "user", "content": prompt})
 
         storage_results = doc_store.index_search(query=prompt)
-        print(storage_results)
+
         model_output = LexioModel().run_inference(query=prompt, context=storage_results)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
