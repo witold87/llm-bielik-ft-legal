@@ -3,5 +3,9 @@
 src/data/*
 src/models
 *.xlsx
-
+src/wandb/*
+src/bielik-legal-finetune/*
+src/bielik_v2-legal-finetune/*
+src/offload
+src/evaluation_data
 __pycache__/
