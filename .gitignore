@@ -6,6 +6,7 @@ src/models
 src/wandb/*
 src/bielik-legal-finetune/*
 src/bielik_v2-legal-finetune/*
+src/bielik*
 src/offload
 src/evaluation_data
 __pycache__/
