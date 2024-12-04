@@ -5,7 +5,7 @@ from tqdm import tqdm
 from src.evaluation.distance_based import DistanceEvaluator
 
 
-class Reporting:
+class SimilarityMatrix:
     def __init__(self, data: pd.DataFrame):
         self.data = data
 
