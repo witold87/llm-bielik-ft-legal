@@ -1,6 +1,7 @@
 .idea/*
 .env
 src/data/*
+!src/data/val_dataset.py
 src/models
 *.xlsx
 src/wandb/*
