@@ -39,7 +39,7 @@ class PromptBuilder:
         ]
 
     @staticmethod
-    def get_coherence_pl(question: str) -> list:
+    def get_coherence_pl(text: str) -> list:
         return [
             {
                 'role': 'system',
@@ -47,7 +47,7 @@ class PromptBuilder:
             },
             {
                 'role': 'user',
-                'content': f'Twoim zadaniem jest ocenić w skali od 1 do 5 spójność pytania i wyjaśnić dlaczego tak oceniłeś. Oto pytanie {question}. Zwróć tylko wartość oceny oraz wyjaśnienie w formacie krotki: ocena | wyjaśnienie. Odpowiedź ma być po polsku.'
+                'content': f'Twoim zadaniem jest ocenić w skali od 1 do 5 spójność tekstu i wyjaśnić dlaczego tak oceniłeś. Oto text {text}. Zwróć JSONA z polami: score oraz explanation. Odpowiedź ma być po polsku.'
             }
         ]
 
@@ -65,11 +65,25 @@ class PromptBuilder:
         ]
 
     @staticmethod
-    def get_relevance(question: str, context: str) -> list:
+    def get_accuracy(question: str, answer: str) -> list:
         return [
             {
                 'role': 'system',
                 'content': 'You are an expert lawyer who want to get insights about law',
+            },
+            {
+                'role': 'user',
+                'content': f'Twoim zadaniem jest ocenić w skali od 1 do 5 czy dana odpowiedź jest trafna i precyzyjna wzgledem zadanego pytania, gdzie 5 oznacza ze jest wysoce precyzyjna a 1 znaczy, że w ogóle nie jest precyzyjna.'
+                           f'Oto pytanie: {question} a to jest {answer}. Zwróć JSONA z polami: score oraz explanation. Odpowiedź ma być po polsku. '
+            }
+        ]
+
+    @staticmethod
+    def get_relevance_pl(question: str, context: str) -> list:
+        return [
+            {
+                'role': 'system',
+                'content': 'Jesteś prawnikiem, który stara sie zrozumieć zagadnienia i niuanse prawa i umów.'
             },
             {
                 'role': 'user',
@@ -88,5 +102,18 @@ class PromptBuilder:
             {
                 'role': 'user',
                 'content': f'Your task is to rate from 1 to 5 if the provided question could be asked by a lawyer then rate 5, and rate 1 if not based on the question. Here is the question: {question}. Return only value of the rating.'
+            }
+        ]
+
+    @staticmethod
+    def get_clarity_pl(text: str) -> list:
+        return [
+            {
+                'role': 'system',
+                'content': 'Jesteś prawnikiem, który stara sie zrozumieć zagadnienia i niuanse prawa i umów.',
+            },
+            {
+                'role': 'user',
+                'content': f'Twoim zadaniem jest ocenić w skali od 1 do 5 czytelność, jasność tekstu i wyjaśnić dlaczego tak oceniłeś. Oto text {text}. Zwróć JSONA z polami: score oraz explanation. Odpowiedź ma być po polsku.'
             }
         ]

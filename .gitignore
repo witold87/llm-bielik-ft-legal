@@ -11,3 +11,4 @@ src/bielik*
 src/offload
 src/evaluation_data
 __pycache__/
+checkpoints
