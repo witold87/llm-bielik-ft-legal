@@ -4,22 +4,23 @@ from datasets import load_dataset
 import matplotlib.pyplot as plt
 
 
-def format_for_output(data: pd.DataFrame) -> str:
-    text = f"### Question: {data['question']}\n ### Answer: {data['answer']}"
-    return text
+def format_for_chat_template(data: pd.DataFrame) -> list:
+    messages = [
+        {"role": "system", "content": "Jesteś asystentem prawniczym. Odpowiadaj krótko, precyzyjnie i wyłącznie w języku polskim."},
+        {"role": "user", "content": data['question']},
+        {"role": "assistant", "content": data['answer']}
+    ]
+    return messages
 
+def generate_with_template(tokenizer, prompt):
+    return tokenizer.apply_chat_template(format_for_chat_template(prompt), return_dict=True)
 
-def generate_and_tokenize(tokenizer, prompt):
-    return tokenizer(format_for_output(prompt))
-
-
-def generate_and_tokenize_with_truncation(length: int, tokenizer, prompt):
-    result = tokenizer(
-        format_for_output(prompt),
+def generate_and_tokenize_with_template(length: int, tokenizer, prompt):
+    result = tokenizer.apply_chat_template(format_for_chat_template(prompt),
         truncation=True,
         max_length=length,
-        padding="max_length",
-    )
+        return_dict=True,
+        padding="max_length")
     result["labels"] = result["input_ids"].copy()
     return result
 

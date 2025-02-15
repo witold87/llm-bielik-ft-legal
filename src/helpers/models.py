@@ -1,4 +1,3 @@
-import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 
@@ -18,6 +17,7 @@ def load_model(model_id: str, config: dict,
         add_bos_token=True,
     )
     model_tokenizer.pad_token = model_tokenizer.eos_token
+    # model_tokenizer.pad_token = model_tokenizer.unk_token
     return model, model_tokenizer
 
 
