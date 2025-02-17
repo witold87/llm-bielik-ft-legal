@@ -12,3 +12,4 @@ src/offload
 src/evaluation_data
 __pycache__/
 checkpoints
+llm-bielik-ft-data-generation-part-I_files
