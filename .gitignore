@@ -1,8 +1,15 @@
 .idea/*
 .env
 src/data/*
+!src/data/val_dataset.py
 src/models
 *.xlsx
 src/wandb/*
 src/bielik-legal-finetune/*
+src/bielik_v2-legal-finetune/*
+src/bielik*
+src/offload
+src/evaluation_data
 __pycache__/
+checkpoints
+llm-bielik-ft-data-generation-part-I_files

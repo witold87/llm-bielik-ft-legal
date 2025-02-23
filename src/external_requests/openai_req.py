@@ -1,6 +1,6 @@
 import os
 from typing import Union
-
+from pydantic import BaseModel
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 
@@ -20,6 +20,18 @@ class OpenAIReq:
     def call_api(self, prompt: list, **model_params) -> str:
         completion = client.chat.completions.create(
             model=self.model,
+            max_tokens=model_params.get('max_tokens', 4096),
+            temperature=model_params.get('temperature', 0.2),
+            top_p=model_params.get('top_p', 1),
+            messages=prompt
+        )
+        response = completion.choices[0].message.content
+        return response
+
+    def call_api_formatted(self, prompt: list, **model_params) -> str:
+        completion = client.chat.completions.create(
+            model=self.model,
+            response_format={"type": "json_object"},
             max_tokens=model_params.get('max_tokens', 4096),
             temperature=model_params.get('temperature', 0.2),
             top_p=model_params.get('top_p', 1),
