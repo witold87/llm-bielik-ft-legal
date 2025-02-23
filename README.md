@@ -18,7 +18,7 @@ Code and notebooks are here:
 
 ## Table of contents
 
-Those notebook cover the following topics:
+Those notebooks cover the following topics:
 1. Loading and splitting data into chunks
 2. Generating new data (question and answers) for the future fine-tuning using GPT-4o model from OpenAI
 3. Evaluating generated data using LLM-based and distance-based (Word Mover Distance) metrics.
